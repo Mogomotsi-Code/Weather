@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundImage="background.png"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False" 
+             x:Class="Weather.Views.MainPage">
+    <ContentPage.Content >
+        <Grid HorizontalOptions="CenterAndExpand" Margin="0,100,0,0" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="0" >
+                <Label HorizontalOptions="Center" Style="{StaticResource FormLabel}" Text="{Binding LocationName,Mode=TwoWay}" FontSize="30" FontAttributes="Bold" />
+                 <Label HorizontalOptions="Center" Style="{StaticResource FormLabel}" Text="{Binding CurrentDateTime,Mode=TwoWay,StringFormat='{0:MMMM dd, ddd yyyy}'}" FontSize="Medium" FontAttributes="None" />
+                 <Label HorizontalOptions="Center" Style="{StaticResource FormLabel}" Text="{Binding Temparature.Value,StringFormat='{0}°'}" FontSize="100" FontAttributes="Bold" />
+                <BoxView HeightRequest="1" Color="{StaticResource TextColor}"/>
+                <Label HorizontalOptions="Center" Style="{StaticResource FormLabel}" Text="{Binding Temparature.Description,Mode=TwoWay}" FontSize="Large" FontAttributes="None" />
+            </StackLayout>
+            <Frame  Grid.Row="1" Margin="20,20,20,20" HasShadow="True" VerticalOptions="FillAndExpand" CornerRadius="20">
+                <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                    <Label Text="5 day forecast" HorizontalOptions="Center" FontSize="Large"/>                     
+                    <CollectionView SelectionMode="Single" ItemsLayout="HorizontalList" SelectedItem="{Binding SelectedForeCast}"  ItemsSource="{Binding ForeCast,Mode=TwoWay}" FlowDirection="LeftToRight">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Vertical" Padding="20">
+                                    <Label Text="{Binding Day}"/>
+                                    <Label Text="{Binding Icon}"/>
+                                    <Label Text="{Binding Temperature, StringFormat='{0}°'}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>             
+            </Frame>           
+        </Grid> 
+    </ContentPage.Content>
+</ContentPage>

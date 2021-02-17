@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundImage="background.png"
+    NavigationPage.HasNavigationBar="False"
+    NavigationPage.HasBackButton="False"
+    x:Class="Weather.Views.ForeCastDetailsPage">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+           <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>                
+            </Grid.RowDefinitions>
+           <Button Text="&#xf004d;"  Command="{Binding GoBackCommand}" Style="{StaticResource NavigationButton}" HorizontalOptions="Start" Grid.Row="0" />
+           <StackLayout Grid.Row="1" VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+               <Label Text="{Binding City}" Style="{StaticResource FormLabel}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="Large"  />
+               <Label Text="{Binding ForeCast.Date,StringFormat='{0:MMMM dd, ddd yyyy}'}" Style="{StaticResource FormLabel}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="Large" />
+               <Label Text="{Binding ForeCast.Temperature, StringFormat='{0} °'}" Style="{StaticResource FormLabel}" HorizontalOptions="CenterAndExpand" FontSize="Large" />
+               <Label Text="{Binding ForeCast.ForeCastDtails.Weather[0].Description}" Style="{StaticResource FormLabel}" HorizontalOptions="CenterAndExpand" FontSize="Large"  />
+           </StackLayout>
+           <Frame Grid.Row="2" Margin="10" CornerRadius="20" BorderColor="{StaticResource TextColor}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+               <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                   <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                       <Label Style="{StaticResource FormLabel}" FontSize="Large" FontAttributes="Bold" Text="Min" HorizontalOptions="StartAndExpand"/>
+                       <Label Style="{StaticResource FormLabel}" FontSize="Large" FontAttributes="None"  HorizontalOptions="End" Text="{Binding ForeCast.ForeCastDtails.Main.Temp_Min,Mode=TwoWay,StringFormat='{0} °'}"/>
+                   </StackLayout>
+                   <BoxView HeightRequest="1" Color="White"/>
+                   <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                       <Label Style="{StaticResource FormLabel}"  FontSize="Large" FontAttributes="Bold" Text="Max" HorizontalOptions="StartAndExpand"/>
+                       <Label Style="{StaticResource FormLabel}" FontSize="Large" FontAttributes="None"  Text="{Binding ForeCast.ForeCastDtails.Main.Temp_Max,StringFormat='{0} °'}"/>
+                   </StackLayout>
+                   <BoxView HeightRequest="1" Color="White"/>
+                   <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                       <Label Style="{StaticResource FormLabel}" FontSize="Large" FontAttributes="Bold" Text="Humidity" HorizontalOptions="StartAndExpand"/>
+                       <Label Style="{StaticResource FormLabel}" FontSize="Large" FontAttributes="None" HorizontalOptions="End"  Text="{Binding ForeCast.ForeCastDtails.Main.Humidity,StringFormat='{0}%'}"/>
+                   </StackLayout>
+                   <BoxView HeightRequest="1" Color="White"/>
+                   <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                       <Label  Style="{StaticResource FormLabel}" FontSize="Large" FontAttributes="Bold" Text="Wind Speed" HorizontalOptions="StartAndExpand"/>
+                       <Label Style="{StaticResource FormLabel}" FontSize="Large" FontAttributes="None"  Text="{Binding ForeCast.ForeCastDtails.Wind.Speed, StringFormat='{0}Km/h'}"/>
+                   </StackLayout>
+
+               </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
